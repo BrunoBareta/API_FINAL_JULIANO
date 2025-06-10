@@ -1,0 +1,6 @@
+@API_MECANICA_JULIANO_HostAddress = http://localhost:5206
+
+GET {{API_MECANICA_JULIANO_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
