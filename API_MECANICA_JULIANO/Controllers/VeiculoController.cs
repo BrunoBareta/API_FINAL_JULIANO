@@ -41,17 +41,15 @@ namespace API_MECANICA_JULIANO.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] VeiculoDTO dto)
+        public async Task<IActionResult> Put(int id, [FromBody] AtualizarVeiculoDTO dto)
         {
-            if (id != dto.IdVeiculo)
-                return BadRequest("ID da URL não confere com o corpo da requisição.");
-
             var atualizado = await _service.UpdateAsync(id, dto);
-            if (!atualizado)
+            if (atualizado == null)
                 return NotFound();
 
-            return NoContent();
+            return Ok(atualizado);
         }
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)

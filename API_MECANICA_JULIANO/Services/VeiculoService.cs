@@ -37,17 +37,24 @@ namespace API_MECANICA_JULIANO.Services
             return _mapper.Map<VeiculoDTO>(entity);
         }
 
-        public async Task<bool> UpdateAsync(int id, VeiculoDTO dto)
+        public async Task<VeiculoDTO?> UpdateAsync(int id, AtualizarVeiculoDTO dto)
         {
             var entity = await _context.Veiculos.FindAsync(id);
             if (entity == null)
-                return false;
+                return null;
 
-            _mapper.Map(dto, entity);
-            _context.Entry(entity).State = EntityState.Modified;
+            // Atualiza apenas os campos permitidos
+            entity.Placa = dto.Placa;
+            entity.Modelo = dto.Modelo;
+            entity.Ano = dto.Ano;
+            entity.Cor = dto.Cor;
+            entity.IdCliente = dto.IdCliente;
+
             await _context.SaveChangesAsync();
-            return true;
+
+            return _mapper.Map<VeiculoDTO>(entity);
         }
+
 
         public async Task<bool> DeleteAsync(int id)
         {
