@@ -16,18 +16,20 @@ builder.Services.AddControllers()
 
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
-
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
 builder.Services.AddDbContext<TrabalhoMecanicaContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddScoped<VeiculoService>();
 builder.Services.AddScoped<ClienteService>();
 builder.Services.AddValidatorsFromAssemblyContaining<CriarClienteDTOValidator>();
+builder.Services.AddScoped<ServicoService>();
+builder.Services.AddScoped<ServicoRealizadoService>();
+builder.Services.AddScoped<FuncionarioService>();
+builder.Services.AddScoped<OrdemServicoService>();
+builder.Services.AddAutoMapper(typeof(Program));
+
 
 
 

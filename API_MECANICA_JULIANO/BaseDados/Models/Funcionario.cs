@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using API_MECANICA_JULIANO.BaseDados.Models;
 
-namespace API_MECANICA_JULIANO.BaseDados.Models;
-
-public partial class Funcionario
+// Classe que representa a tabela de Funcionário no banco de dados
+public class Funcionario
 {
+    // Chave primária da tabela
     public int IdFuncionario { get; set; }
 
-    public string Nome { get; set; } = null!;
+    // Nome do funcionário
+    public string? Nome { get; set; }
 
+    // Função ou cargo que o funcionário exerce
     public string? Funcao { get; set; }
 
+    // Telefone para contato
     public string? Telefone { get; set; }
 
-    public virtual ICollection<OrdemServico> OrdemServicos { get; set; } = new List<OrdemServico>();
+    // Relacionamento: um funcionário pode estar em várias ordens de serviço
+    public ICollection<OrdemServico>? OrdemServicos { get; set; }
 }

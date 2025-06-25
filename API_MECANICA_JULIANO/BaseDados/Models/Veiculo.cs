@@ -1,23 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using API_MECANICA_JULIANO.BaseDados.Models;
 
-namespace API_MECANICA_JULIANO.BaseDados.Models;
-
-public partial class Veiculo
+// Representa a entidade Veiculo no sistema
+public class Veiculo
 {
+    // Chave primária
     public int IdVeiculo { get; set; }
 
-    public string Placa { get; set; } = null!;
+    // Dados do veículo
+    public string? Placa { get; set; }       // Placa do veículo
+    public string? Modelo { get; set; }      // Modelo do veículo
+    public int? Ano { get; set; }            // Ano de fabricação
+    public string? Cor { get; set; }         // Cor do veículo
 
-    public string? Modelo { get; set; }
+    // Chave estrangeira que liga o veículo a um cliente
+    public int IdCliente { get; set; }
 
-    public int? Ano { get; set; }
+    // Propriedade de navegação (relacionamento com Cliente)
+    public Cliente? Cliente { get; set; }
 
-    public string? Cor { get; set; }
-
-    public int? IdCliente { get; set; }
-
-    public virtual Cliente? IdClienteNavigation { get; set; }
-
-    public virtual ICollection<OrdemServico> OrdemServicos { get; set; } = new List<OrdemServico>();
+    // Lista de ordens de serviço associadas a este veículo
+    public ICollection<OrdemServico>? OrdemServicos { get; set; }
 }
